@@ -88,27 +88,87 @@ const data = [
   }
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
+const newData = (newObj) => {
+  data.push(newObj)
+}
+
+const spiderMan = {
+  title: `The Amazing Spider-Man #1`,
+  date: `March 10, 1963`,
+  firstParagraph: `Spider-Man, in one of his earliest adventures following Uncle Ben's death, must save a crew of astronauts aboard a malfunctioning space ship!`,
+  secondParagraph: `Cover pencils by Jack Kirby, inks by Steve Ditko. Spider-Man, script by Stan Lee, art by Steve Ditko; Spider-Man origin retold; J. Jonah Jameson introduced; Spider-Man rescues John Jameson, J. Jonah Jameson's son, from his malfunctioning space capsule. Spider-Man vs. The Chameleon, script by Stan Lee, art by Steve Ditko; Spider-Man tries to join the Fantastic Four and stops the Chameleon. Reprinted in Marvel Tales # 138. 36 pgs. $0.12. Cover price $0.12.`,
+  thirdParagraph: `Due to strong sales on the character's first appearance in Amazing Fantasy No. 15, Spider-Man was given his own ongoing series in March 1963.[6] The initial years of the series, under Lee and Ditko, chronicled Spider-Man's nascent career with his civilian life as hard-luck yet perpetually good-humored teenager Peter Parker. Peter balanced his career as Spider-Man with his job as a freelance photographer for The Daily Bugle under the bombastic editor-publisher J. Jonah Jameson to support himself and his frail Aunt May. At the same time, Peter dealt with public hostility towards Spider-Man and the antagonism of his classmates Flash Thompson and Liz Allan at Midtown High School, while embarking on a tentative, ill-fated romance with Jameson's secretary, Betty Brant.`
+}
+
+newData(spiderMan)
+// Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
+  // <div class="article">
+  //   <h2>{title of the article}</h2>
+  //   <p class="date">{date of the article}</p>
 
-    {three separate paragraph elements}
+  //   {three separate paragraph elements}
 
-    <span class='expandButton'></span>
-  </div>
+  //   <span class='expandButton'></span>
+  // </div>
 
-  Hint: You will need to use createElement more than once here!
+  // Hint: You will need to use createElement more than once here!
+const componentCreator = ( {title, date, firstParagraph, secondParagraph, thirdParagraph } ) => {
+  const article = document.createElement('div')
+  const articleTitle = document.createElement('h2')
+  const dateP = document.createElement('p')
+  const articleP1 = document.createElement('p')
+  const articleP2 = document.createElement('p')
+  const articleP3 = document.createElement('p')
+  const expandButton = document.createElement('span')
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  article.appendChild(articleTitle)
+  article.appendChild(dateP)
+  article.appendChild(articleP1)
+  article.appendChild(articleP2)
+  article.appendChild(articleP3)
+  article.appendChild(expandButton)
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  article.classList.add('article')
+  dateP.classList.add('date')
+  expandButton.classList.add('expandButton')
 
-  Step 3: return the entire component.
+  articleTitle.textContent = title
+  dateP.textContent = date
+  articleP1.textContent = firstParagraph
+  articleP2.textContent = secondParagraph
+  articleP3.textContent = thirdParagraph
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  // Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+  // Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  const articleToggle = () => {
+    article.classList.toggle('article-open')
+  }
+  article.addEventListener('click', articleToggle)
 
-*/
+  // Step 3: return the entire component.
+
+  return article
+}
+// const testArticle = componentCreator(data[0])
+
+
+
+  // Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+const articles = document.querySelector('.articles')
+
+const articleElements = data.map(articleData => {
+  return componentCreator(articleData)
+})
+
+
+
+articleElements.forEach(articleElement => {
+  articles.appendChild(articleElement)
+})
+
+// console.log(articleElements)
+  // Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+// console.log(data)
+
