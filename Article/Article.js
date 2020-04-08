@@ -122,9 +122,9 @@ const componentCreator = ( {title, date, firstParagraph, secondParagraph, thirdP
 
   articleTitle.textContent = title
   dateP.textContent = date
-  articleP1.texContent = firstParagraph
-  articleP2.texContent = secondParagraph
-  articleP3.texContent = thirdParagraph
+  articleP1.textContent = firstParagraph
+  articleP2.textContent = secondParagraph
+  articleP3.textContent = thirdParagraph
 
   // Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
@@ -132,22 +132,30 @@ const componentCreator = ( {title, date, firstParagraph, secondParagraph, thirdP
   const articleToggle = () => {
     article.classList.toggle('article-open')
   }
-  expandButton.addEventListener('click', articleToggle)
+  article.addEventListener('click', articleToggle)
 
   // Step 3: return the entire component.
 
   return article
 }
+// const testArticle = componentCreator(data[0])
+
+
 
   // Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-
-const articleElements = data.map(data => componentCreator(data))
-console.log(articleElements)
-
 const articles = document.querySelector('.articles')
+
+const articleElements = data.map(articleData => {
+  return componentCreator(articleData)
+})
+
+
+
 articleElements.forEach(articleElement => {
   articles.appendChild(articleElement)
 })
+
+console.log(articleElements)
   // Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 
