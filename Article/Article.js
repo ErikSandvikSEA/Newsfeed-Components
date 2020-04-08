@@ -88,6 +88,19 @@ const data = [
   }
 ];
 
+const newData = (newObj) => {
+  data.push(newObj)
+}
+
+const spiderMan = {
+  title: `The Amazing Spider-Man #1`,
+  date: `March 10, 1963`,
+  firstParagraph: `Spider-Man, in one of his earliest adventures following Uncle Ben's death, must save a crew of astronauts aboard a malfunctioning space ship!`,
+  secondParagraph: `Cover pencils by Jack Kirby, inks by Steve Ditko. Spider-Man, script by Stan Lee, art by Steve Ditko; Spider-Man origin retold; J. Jonah Jameson introduced; Spider-Man rescues John Jameson, J. Jonah Jameson's son, from his malfunctioning space capsule. Spider-Man vs. The Chameleon, script by Stan Lee, art by Steve Ditko; Spider-Man tries to join the Fantastic Four and stops the Chameleon. Reprinted in Marvel Tales # 138. 36 pgs. $0.12. Cover price $0.12.`,
+  thirdParagraph: `Due to strong sales on the character's first appearance in Amazing Fantasy No. 15, Spider-Man was given his own ongoing series in March 1963.[6] The initial years of the series, under Lee and Ditko, chronicled Spider-Man's nascent career with his civilian life as hard-luck yet perpetually good-humored teenager Peter Parker. Peter balanced his career as Spider-Man with his job as a freelance photographer for The Daily Bugle under the bombastic editor-publisher J. Jonah Jameson to support himself and his frail Aunt May. At the same time, Peter dealt with public hostility towards Spider-Man and the antagonism of his classmates Flash Thompson and Liz Allan at Midtown High School, while embarking on a tentative, ill-fated romance with Jameson's secretary, Betty Brant.`
+}
+
+newData(spiderMan)
 // Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   // <div class="article">
@@ -157,5 +170,5 @@ articleElements.forEach(articleElement => {
 
 console.log(articleElements)
   // Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
-
+console.log(data)
 
