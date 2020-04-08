@@ -88,27 +88,66 @@ const data = [
   }
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
+// Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
+  // <div class="article">
+  //   <h2>{title of the article}</h2>
+  //   <p class="date">{date of the article}</p>
 
-    {three separate paragraph elements}
+  //   {three separate paragraph elements}
 
-    <span class='expandButton'></span>
-  </div>
+  //   <span class='expandButton'></span>
+  // </div>
 
-  Hint: You will need to use createElement more than once here!
+  // Hint: You will need to use createElement more than once here!
+const componentCreator = ( {title, date, firstParagraph, secondParagraph, thirdParagraph } ) => {
+  const article = document.createElement('div')
+  const articleTitle = document.createElement('h2')
+  const dateP = document.createElement('p')
+  const articleP1 = document.createElement('p')
+  const articleP2 = document.createElement('p')
+  const articleP3 = document.createElement('p')
+  const expandButton = document.createElement('span')
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  article.appendChild(articleTitle)
+  article.appendChild(dateP)
+  article.appendChild(articleP1)
+  article.appendChild(articleP2)
+  article.appendChild(articleP3)
+  article.appendChild(expandButton)
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  article.classList.add('article')
+  dateP.classList.add('date')
+  expandButton.classList.add('expandButton')
 
-  Step 3: return the entire component.
+  articleTitle.textContent = title
+  dateP.textContent = date
+  articleP1.texContent = firstParagraph
+  articleP2.texContent = secondParagraph
+  articleP3.texContent = thirdParagraph
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  // Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+  // Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  const articleToggle = () => {
+    article.classList.toggle('article-open')
+  }
+  expandButton.addEventListener('click', articleToggle)
 
-*/
+  // Step 3: return the entire component.
+
+  return article
+}
+
+  // Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+
+const articleElements = data.map(data => componentCreator(data))
+console.log(articleElements)
+
+const articles = document.querySelector('.articles')
+articleElements.forEach(articleElement => {
+  articles.appendChild(articleElement)
+})
+  // Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+
+
