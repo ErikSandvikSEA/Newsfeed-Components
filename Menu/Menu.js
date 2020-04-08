@@ -1,4 +1,7 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
+// import gsap from '../node_modules/gsap';
+
+// console.log(gsap)
 
 let menuItems = [
   'Students',
@@ -25,6 +28,9 @@ let menuItems = [
     const unorderedList = document.createElement('ul')
 
     menu.classList.add('menu')
+    menu.classList.add('menu--closed')
+    menu.classList.add('no--animation')
+
   // Step 2: Inside this function, iterate over the array creating a list item <li> element for each item in the array. 
   // Add those items to the <ul>
 
@@ -40,7 +46,10 @@ let menuItems = [
   const menuButton = document.querySelector('.menu-button')
   // Step 4: add a click event listener to the menu button. When clicked it should toggle the class 'menu--open' on the menu (your div with a 'menu' class).
   const menuToggle = () => {
+    menu.classList.remove('no--animation')
     menu.classList.toggle('menu--open')
+    menu.classList.toggle('menu--closed')
+   
   }
 
   menuButton.addEventListener('click', menuToggle)
